@@ -1,0 +1,21 @@
+{
+  "name": "quote-of-the-day",
+  "type": "module",
+  "scripts": {
+    "build": "npm install && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "react-icons": "5.3.0",
+    "@azure/app-configuration-provider": "file:./azure-app-configuration-provider.tgz",
+    "@microsoft/feature-management": "2.0.0-preview.3",
+    "@microsoft/feature-management-applicationinsights-browser": "2.0.0-preview.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.1"
+  }
+}
