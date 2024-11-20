@@ -2,7 +2,7 @@
   "name": "quote-of-the-day-server",
   "scripts": {
     "build": "npm install && cd client && npm install && npm run build",
-    "start": "node server.mjs"
+    "start": "node server.js"
   },
   "dependencies": {
     "@azure/app-configuration-provider": "latest",

@@ -4,7 +4,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { AppContext } from "./AppContext";
 
 function Home() {
-  const { appInsights, featureManager, currentUser } = useContext(AppContext);
+  const { featureManager, currentUser } = useContext(AppContext);
   const [liked, setLiked] = useState(false);
   const [variant, setVariant] = useState(undefined);
 
@@ -18,7 +18,7 @@ function Home() {
       );
       if (response.ok) {
         const result = await response.json();
-        setVariant(result.variant);
+        setVariant(result);
       } else {
         console.error("Failed to get variant.");
       }

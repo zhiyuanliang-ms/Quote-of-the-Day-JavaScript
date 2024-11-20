@@ -9,9 +9,12 @@
     npx cross-env APPCONFIG_CONNECTION_STRING="<appconfig connection string>"
     npx cross-env APPLICATIONINSIGHTS_CONNECTION_STRING="<appinsights connection string>" 
     ```
+
 ## Get started
 
 ``` bash
 npm run build
 npm run start
 ```
+
+Tips: Username "userb@contoso.com" can get the "On" variant.
