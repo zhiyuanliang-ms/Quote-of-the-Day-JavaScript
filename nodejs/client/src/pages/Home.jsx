@@ -1,8 +1,7 @@
-import React from 'react';
-import { useState, useEffect, useContext } from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { trackEvent } from '@microsoft/feature-management-applicationinsights-browser';
-import { AppContext } from './AppContext';
+import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { AppContext } from "./AppContext";
 
 function Home() {
   const { appInsights, featureManager, currentUser } = useContext(AppContext);
@@ -10,19 +9,44 @@ function Home() {
   const [variant, setVariant] = useState(undefined);
 
   useEffect(() => {
-    const init = async () => {  
-      const variant = await featureManager?.getVariant("Greeting", { userId: currentUser });
-      setVariant(variant);
+    const init = async () => {
+      const response = await fetch(
+        `/api/variant?userId=${currentUser ?? ""}`,
+        {
+          method: "GET",
+        }
+      );
+      if (response.ok) {
+        const result = await response.json();
+        setVariant(result.variant);
+      } else {
+        console.error("Failed to get variant.");
+      }
       setLiked(false);
     };
 
     init();
   }, [featureManager, currentUser]);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!liked) {
-      const targetingId = currentUser;
-      trackEvent(appInsights, targetingId, { name: "Like" });
+      try {
+        const response = await fetch("/api/logEvent", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ TargetingId: currentUser ?? "" }),
+        });
+
+        if (response.ok) {
+          console.log("Event logged successfully");
+        } else {
+          console.error("Failed to log event");
+        }
+      } catch (error) {
+        console.error("Error logging event:", error);
+      }
     }
     setLiked(!liked);
   };

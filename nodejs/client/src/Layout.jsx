@@ -1,25 +1,15 @@
-import React from 'react';
-import { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AppContext } from './pages/AppContext';
+import React from "react";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "./pages/AppContext";
 
 const Layout = ({ children }) => {
-  const { featureManager, currentUser, logoutUser } = useContext(AppContext);
-  const [beta, setBeta] = useState(false);
+  const { currentUser, logoutUser } = useContext(AppContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const init = async () => {  
-      const enabled = await featureManager?.isEnabled("Beta");
-      setBeta(enabled);
-    };
-
-    init();
-  }, [featureManager]);
   
   const handleLogout = () => {
     logoutUser();
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -30,12 +20,6 @@ const Layout = ({ children }) => {
           <nav>
             <Link to="/">Home</Link>
             <Link to="/privacy">Privacy</Link>
-            { beta ? 
-              ( 
-                <Link to="/beta">Beta</Link>
-              ) :  
-              null 
-            }
           </nav>
         </div>
         <div className="navbar-right">

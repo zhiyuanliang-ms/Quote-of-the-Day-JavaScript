@@ -1,13 +1,13 @@
-import React from 'react';
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { AppContext } from './AppContext';
+import { AppContext } from "./AppContext";
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const { loginUser } = useContext(AppContext);
   const navigate = useNavigate();
@@ -16,17 +16,17 @@ const Register = () => {
 
     e.preventDefault();
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     const existingUser = users.some((user) => (user.username === username));
 
     if (existingUser) {
-      setMessage('User already exists!');
+      setMessage("User already exists!");
     }
     else {
       users.push({ username, password });
-      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem("users", JSON.stringify(users));
       loginUser(username);
-      navigate('/');
+      navigate("/");
     }
   };
 
