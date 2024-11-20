@@ -1,13 +1,7 @@
-# Quote-of-the-Day-JavaScript
+# Quote-of-the-Day-JavaScript (Browser)
 
 ## Prerequisite
-Fill your connection string in src/pages/AppContext.js
-
-Install packages
-
-``` bash
-npm install
-```
+Fill your connection string and CDN endpoint in src/pages/AppContext.js
 
 ## Get started
 
