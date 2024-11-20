@@ -1,0 +1,13 @@
+{
+  "configurations": {
+    "browser": {
+      "appLocation": ".",
+      "outputLocation": "dist",
+      "appBuildCommand": "npm run build",
+      "run": "npm run dev",
+      "appDevserverUrl": "http://localhost:5173",
+      "appName": "quote-of-the-day",
+      "resourceGroup": "quote-of-the-day-rg"
+    }
+  }
+}
